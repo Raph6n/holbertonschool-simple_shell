@@ -8,9 +8,10 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-
-
-
+int shell_inter(void);
+char **process(char *line);
+void *prt_env(char *env);
+char *location(char *command);
 
 
 #endif

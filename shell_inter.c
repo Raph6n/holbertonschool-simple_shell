@@ -8,7 +8,7 @@
  * Return: Always 0.
  */
 
-int main(void)
+int shell_inter(void)
 {
 	char *line = NULL;
 	char *prt = "$ ";
