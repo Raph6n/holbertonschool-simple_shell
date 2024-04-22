@@ -2,7 +2,7 @@
 #include "shell.h"
 
 /**
- * main - prints "$ ", wait for the user to enter a command,
+ * shell_inter - prints "$ ", wait for the user to enter a command,
  * prints it on the next line.
  *
  * Return: Always 0.

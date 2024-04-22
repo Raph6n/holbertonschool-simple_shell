@@ -1,46 +1,51 @@
 #include "shell.h"
 
-void command (char *line)
-{
-char *tokens[64];
-int count = 0;
-const char *specials = " \t\n";
-pid_t pid;
-int status;
-char *token_2;
- 
-if (line == NULL)
-return;
+/**
+ * command - function for tokenise the line
+ * @line: line enter.
+ */
 
-token_2 = strtok(line, specials);
+void command(char *line)
+{
+	char *tokens[64];
+	int count = 0;
+	const char *specials = " \t\n";
+	pid_t pid;
+	int status;
+	char *token_2;
 
-while (token_2 != NULL && count < 64)
-{
-tokens[count++] = token_2;
-token_2 = strtok(NULL, specials);
-}
-tokens[count] = NULL;
+	if (line == NULL)
+		return;
 
-if (tokens[0] == NULL)
-return;
+	token_2 = strtok(line, specials);
 
-pid = fork ();
+	while (token_2 != NULL && count < 64)
+	{
+		tokens[count++] = token_2;
+		token_2 = strtok(NULL, specials);
+	}
+	tokens[count] = NULL;
 
-if (pid == -1)
-{
-perror ("fork");
-return;
-}
-else if (pid == 0)
-{
-if (execvp(tokens[0], tokens) == -1)
-{
-fprintf(stderr, "erreur %s\n", tokens[0]);
-exit(EXIT_FAILURE);
-}
-}
-else
-{
-waitpid(pid, &status, 0);
-}
+	if (tokens[0] == NULL)
+		return;
+
+	pid = fork();
+
+	if (pid == -1)
+	{
+		perror ("fork");
+		return;
+	}
+	else if (pid == 0)
+	{
+		if (execvp(tokens[0], tokens) == -1)
+		{
+			fprintf(stderr, "erreur %s\n", tokens[0]);
+			exit(EXIT_FAILURE);
+		}
+	}
+	else
+	{
+		waitpid(pid, &status, 0);
+	}
 }
