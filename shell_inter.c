@@ -14,7 +14,7 @@ int shell_inter(void)
 	char *prt = "$ ";
 	size_t len = 0;
 	ssize_t read;
-
+	char **token;
 
 	while (1)
 	{
@@ -35,7 +35,7 @@ int shell_inter(void)
 			line[read - 1] = '\0';
 
 		/*call process command in the file tokenize.c*/
-		
+		token = process(line);		
 
 	}
 

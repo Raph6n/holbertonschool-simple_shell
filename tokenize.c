@@ -18,5 +18,18 @@ char **process(char *line)
 		return;
 	}
 
+	while (line)
+		len++;
+
+	for (i = 0; i < len - 1; i++)
+	{
+		argv[i] = malloc(sizeof(char));
+		if (argv[i])
+		{
+			free(cp_line);
+			return;
+		}
+	}
+
 	return (line);
 }
