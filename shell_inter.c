@@ -18,8 +18,8 @@ int shell_inter(void)
 
 	while (1)
 	{
-		if (isatty(fileno(stdin))
-				printf("%s", prt);
+		if (isatty(fileno(stdin)))
+			printf("%s", prt);
 
 		read = getline(&line, &len, stdin);
 		if (read == -1)
