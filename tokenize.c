@@ -14,12 +14,12 @@ return;
 
 char *token = strtok(line, specials);
 
-while (token != NULL && i < 64)
+while (token != NULL && count < 64)
 {
-token[i++] = token;
+token[count++] = token;
 token = strtok(NULL, specials);
 }
-token[i] = NULL;
+token[count] = NULL;
 
 if (token[0] = NULL)
 return;
