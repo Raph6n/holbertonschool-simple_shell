@@ -10,11 +10,10 @@
 
 int shell_inter(void)
 {
-	char *line = NULL;
+	char *line = NULL, **av;
 	char *prt = "$ ";
 	size_t len = 0;
 	ssize_t read;
-	char **token;
 	pid_t pid;
 	int status;
 
@@ -36,27 +35,27 @@ int shell_inter(void)
 		if (strlen(line) == 0)
 			continue;
 
+		line[read - 1] = '\0';
 		pid = fork();
-		if (pid == -1)
+
+		if (pid < 0)
 		{
-			perror("fork");
-			continue;
+			perror("Fork failed");
+			exit(EXIT_FAILURE);
 		}
 		else if (pid == 0)
 		{
-			if (execlp(line, line, (char *)NULL) == -1)
-			{
-				fprintf(stderr, "commande introuvable : %s\n", line);
-				exit(EXIT_FAILURE);
-			}
+			**av = {line, NULL};
+			execve(line, av, NULL);
+			perror("Execve failed");
+			exit(EXIT_FAILURE);
 		}
 		else
-			waitpid(pid, &status, 0);
-
-		free(line);
-		line = NULL;
-		len = 0;
+		{
+			wait(NULL);
+		}
 	}
+	free(line);
 
 	return (0);
 }
