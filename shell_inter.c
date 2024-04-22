@@ -35,7 +35,7 @@ int shell_inter(void)
 			line[read - 1] = '\0';
 
 		/*call process command in the file tokenize.c*/
-		
+		command(line);
 
 	}
 
