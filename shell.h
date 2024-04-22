@@ -12,6 +12,6 @@ int shell_inter(void);
 char **process(char *line);
 void *prt_env(char *env);
 char *location(char *command);
-
+void command (char *line);
 
 #endif
