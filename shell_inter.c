@@ -1,5 +1,6 @@
 #define _GNU_SOURCE
 #include "shell.h"
+#define MAX_COMMAND_LENGTH 1024
 
 /**
  * shell_inter - prints "$ ", wait for the user to enter a command,
@@ -10,11 +11,17 @@
 
 int shell_inter(void)
 {
-	char *line = NULL, **av;
 	char *prt = "$ ";
-	size_t len = 0;
+	size_t len = MAX_COMMAND_LENGTH;
 	ssize_t read;
 	pid_t pid;
+        char *line = (char *)malloc(len * sizeof(char));
+
+        if (line == NULL)
+        {
+                perror("Memory allocation error");
+                exit(EXIT_FAILURE);
+        }
 
 	while (1)
 	{
@@ -44,7 +51,7 @@ int shell_inter(void)
 		}
 		else if (pid == 0)
 		{
-			**av = {line, NULL};
+			char *av[] = {line, NULL};
 			execve(line, av, NULL);
 			perror("Execve failed");
 			exit(EXIT_FAILURE);
