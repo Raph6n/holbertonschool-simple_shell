@@ -15,7 +15,6 @@ int shell_inter(void)
 	size_t len = 0;
 	ssize_t read;
 	pid_t pid;
-	int status;
 
 	while (1)
 	{
