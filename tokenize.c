@@ -2,26 +2,26 @@
 
 void command (char *line)
 {
-char *token[64];
+char *tokens[64];
 int count = 0;
 const char *specials = " \t\n";
 pid_t pid;
 int status;
-
+char *token_2;
  
 if (line == NULL)
 return;
 
-char *token = strtok(line, specials);
+token_2 = strtok(line, specials);
 
-while (token != NULL && count < 64)
+while (token_2 != NULL && count < 64)
 {
-token[count++] = token;
-token = strtok(NULL, specials);
+tokens[count++] = token_2;
+token_2 = strtok(NULL, specials);
 }
-token[count] = NULL;
+tokens[count] = NULL;
 
-if (token[0] = NULL)
+if (tokens[0] == NULL)
 return;
 
 pid = fork ();
@@ -33,9 +33,11 @@ return;
 }
 else if (pid == 0)
 {
-execvp(token[0], token);
-fprintf(stderr, "erreur %s\n", token[0]);
+if (execvp(tokens[0], tokens) == -1)
+{
+fprintf(stderr, "erreur %s\n", tokens[0]);
 exit(EXIT_FAILURE);
+}
 }
 else
 {
