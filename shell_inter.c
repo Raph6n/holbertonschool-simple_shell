@@ -2,7 +2,7 @@
 #include "shell.h"
 
 /**
- * main - prints "$ ", wait for the user to enter a command,
+ * shell_inter - prints "$ ", wait for the user to enter a command,
  * prints it on the next line.
  *
  * Return: Always 0.
@@ -35,7 +35,11 @@ int shell_inter(void)
 			line[read - 1] = '\0';
 
 		/*call process command in the file tokenize.c*/
+<<<<<<< HEAD
 		token = process(line);		
+=======
+		command(line);
+>>>>>>> main
 
 	}
 
