@@ -15,34 +15,48 @@ int shell_inter(void)
 	size_t len = 0;
 	ssize_t read;
 	char **token;
+	pid_t pid;
+	int status;
 
 	while (1)
 	{
 		if (isatty(fileno(stdin)))
+		{
 			printf("%s", prt);
-
+			fflush(stdout);
+		}
 		read = getline(&line, &len, stdin);
 		if (read == -1)
 		{
 			free(line);
-			exit(EXIT_FAILURE);
+			printf("\n");
+			exit(EXIT_SUCCESS);
 		}
 
-		if (line == NULL)
+		if (strlen(line) == 0)
 			continue;
 
-		if (len > 0 && line[read - 1] == '\n')
-			line[read - 1] = '\0';
+		pid = fork();
+		if (pid == -1)
+		{
+			perror("fork");
+			continue;
+		}
+		else if (pid == 0)
+		{
+			if (execlp(line, line, (char *)NULL) == -1)
+			{
+				fprintf(stderr, "commande introuvable : %s\n", line);
+				exit(EXIT_FAILURE);
+			}
+		}
+		else
+			waitpid(pid, &status, 0);
 
-		/*call process command in the file tokenize.c*/
-<<<<<<< HEAD
-		token = process(line);		
-=======
-		command(line);
->>>>>>> main
-
+		free(line);
+		line = NULL;
+		len = 0;
 	}
-
 
 	return (0);
 }
