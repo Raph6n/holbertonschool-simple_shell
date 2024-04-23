@@ -11,17 +11,11 @@
 
 int shell_inter(void)
 {
-	char *prt = "$ ";
-	size_t len = MAX_COMMAND_LENGTH;
+	char *prt = "$ ", *lineptr = NULL;
+	char **tokens;
 	ssize_t read;
-	pid_t pid;
-        char *line = (char *)malloc(len * sizeof(char));
-
-        if (line == NULL)
-        {
-                perror("Memory allocation error");
-                exit(EXIT_FAILURE);
-        }
+	size_t len = 0;
+	int status, i = 0;
 
 	while (1)
 	{
@@ -30,38 +24,36 @@ int shell_inter(void)
 			printf("%s", prt);
 			fflush(stdout);
 		}
+
 		read = getline(&line, &len, stdin);
 		if (read == -1)
 		{
+			free(lineptr);
+			exit(EXIT_FAILURE);
+		}
+
+		if (strcmp(line, "\n") == 0)
+			continue;
+		if (read > 0 && line[read - 1] == '\n')
+			line[read - 1] = '\0';
+
+		tokens = process(line);
+		status = exit_shell(tokens[0]);
+		if (status > 0)
+		{
 			free(line);
-			printf("\n");
+			for (i = 0; tokens[i]; i++)
+				free(tokens[i]);
+			free(tokens);
+			tokens = NULL;
 			exit(EXIT_SUCCESS);
 		}
 
-		if (strlen(line) == 0)
-			continue;
-
-		line[read - 1] = '\0';
-		pid = fork();
-
-		if (pid < 0)
-		{
-			perror("Fork failed");
-			exit(EXIT_FAILURE);
-		}
-		else if (pid == 0)
-		{
-			char *av[] = {line, NULL};
-			execve(line, av, NULL);
-			perror("Execve failed");
-			exit(EXIT_FAILURE);
-		}
-		else
-		{
-			wait(NULL);
-		}
+		exec_command(tokens);
+		for (i = 0; tokens[i]; i++)
+			free(tokens[i]);
+		free(tokens);
+		tokens = NULL;
 	}
-	free(line);
-
 	return (0);
 }
