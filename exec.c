@@ -5,7 +5,7 @@
  * @tokens: Array of tokens representing the command.
  */
 
-void exec_command(char **tokens)
+void exec(char **tokens)
 {
 	pid_t pid = fork();
 
