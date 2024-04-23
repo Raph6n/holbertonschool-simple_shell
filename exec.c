@@ -5,7 +5,7 @@
  * @tokens: Array of tokens representing the command.
  */
 
-void exec(char **tokens)
+int exec(char **tokens)
 {
 	pid_t pid = fork();
 
@@ -34,6 +34,12 @@ void exec(char **tokens)
 		}
 	}
 	else
-		wait(NULL);
+	{
+		int status;
+		waitpid(pid, &status, 0);
+		if (WIFEXITED(status))
+			return WEXITSTATUS(status);
+	}
+	return (-1);
 }
 
