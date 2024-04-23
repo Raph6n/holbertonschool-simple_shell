@@ -16,7 +16,7 @@ void exec(char **tokens)
 	}
 	else if (pid == 0)
 	{
-		if (execvp(tokens[0], tokens) == -1)
+		if (execvp(tokens[0], &tokens[0]) == -1)
 		{
 			perror("Execution failed");
 			exit(EXIT_FAILURE);
