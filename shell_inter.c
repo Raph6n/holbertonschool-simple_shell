@@ -18,7 +18,7 @@ int shell_inter(void)
 
 	while (1)
 	{
-		if (isatty(fileno(stdin)))
+		if (isatty(STDIN_FILENO))
 		{
 			printf("%s", prt);
 			fflush(stdout);
