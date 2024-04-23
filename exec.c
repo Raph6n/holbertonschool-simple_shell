@@ -26,8 +26,7 @@ int exec(char **tokens)
 	{
 		int status;
 		waitpid(pid, &status, 0);
-		if (WIFEXITED(status))
-			return WEXITSTATUS(status);
+		return (0);
 	}
 	return (-1);
 }
