@@ -16,7 +16,7 @@ char **process(char *line)
 	if (line_cp == NULL)
 		exit(98);
 
-	token = strtok(lineptr_copy, delim);
+	token = strtok(line_cp, delim);
 	while (token != NULL)
 	{
 		num_tk++;
@@ -41,5 +41,5 @@ char **process(char *line)
 	av[i] = NULL;
 	free(line_cp);
 
-	return (argv);
+	return (av);
 }
