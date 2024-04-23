@@ -1,51 +1,45 @@
 #include "shell.h"
 
 /**
- * command - function for tokenise the line
+ * process - function for tokenise the line.
  * @line: line enter.
+ * Return: an array with token.
  */
 
-void command(char *line)
+char **process(char *line)
 {
-	char *tokens[64];
-	int count = 0;
-	const char *specials = " \t\n";
-	pid_t pid;
-	int status;
-	char *token_2;
+	const char *delim = " \n";
+	char *token, **av;
+	int num_tk = 0, i;
+	char *line_cp = strdup(line);
 
-	if (line == NULL)
-		return;
+	if (line_cp == NULL)
+		exit(98);
 
-	token_2 = strtok(line, specials);
-
-	while (token_2 != NULL && count < 64)
+	token = strtok(lineptr_copy, delim);
+	while (token != NULL)
 	{
-		tokens[count++] = token_2;
-		token_2 = strtok(NULL, specials);
+		num_tk++;
+		token = strtok(NULL, delim);
 	}
-	tokens[count] = NULL;
 
-	if (tokens[0] == NULL)
-		return;
+	av = malloc(sizeof(char *) * (num_tk + 1));
+	if (av == NULL)
+	{
+		perror("memory allocation error");
+		free(line_cp);
+		exit(98);
+	}
 
-	pid = fork();
+	token = strtok(line, delim);
+	for (i = 0; token != NULL; i++)
+	{
+		av[i] = malloc(sizeof(char) * (strlen(token) + 1));
+		strcpy(av[i], token);
+		token = strtok(NULL, delim);
+	}
+	av[i] = NULL;
+	free(line_cp);
 
-	if (pid == -1)
-	{
-		perror ("fork");
-		return;
-	}
-	else if (pid == 0)
-	{
-		if (execvp(tokens[0], tokens) == -1)
-		{
-			fprintf(stderr, "erreur %s\n", tokens[0]);
-			exit(EXIT_FAILURE);
-		}
-	}
-	else
-	{
-		waitpid(pid, &status, 0);
-	}
+	return (argv);
 }
