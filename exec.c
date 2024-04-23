@@ -12,14 +12,14 @@ void exec(char **tokens)
 	if (pid < 0)
 	{
 		perror("Fork failed");
-		exit(EXIT_FAILURE);
+		exit(0);
 	}
 	else if (pid == 0)
 	{
 		if (execve(tokens[0], tokens, NULL) == -1)
 		{
 			perror("Execution failed");
-			exit(EXIT_FAILURE);
+			exit(0);
 		}
 	}
 	else
