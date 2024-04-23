@@ -16,21 +16,10 @@ int exec(char **tokens)
 	}
 	else if (pid == 0)
 	{
-		if (strcmp(tokens[0], "echo") == 0)
+		if (execvp(tokens[0], tokens) == -1)
 		{
-			if (execvp(tokens[1], &tokens[1]) == -1)
-			{
-				perror("Execution failed");
-				exit(EXIT_FAILURE);
-			}
-		}
-		else
-		{
-			if (execvp(tokens[0], tokens) == -1)
-			{
-				perror("Execution failed");
-				exit(EXIT_FAILURE);
-			}
+			perror("Execution failed");
+			exit(EXIT_FAILURE);
 		}
 	}
 	else
