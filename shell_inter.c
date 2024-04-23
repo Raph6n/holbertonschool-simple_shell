@@ -28,7 +28,7 @@ int shell_inter(void)
 		if (read == -1)
 		{
 			free(line);
-			exit(0);
+			exit(1);
 		}
 
 		if (strcmp(line, "\n") == 0)
