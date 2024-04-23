@@ -38,7 +38,7 @@ int shell_inter(void)
 			line[read - 1] = '\0';
 
 		tokens = process(line);
-		status = exit_shell(tokens[0]);
+		/**status = exit_shell(tokens[0]);
 		if (status > 0)
 		{
 			free(line);
@@ -47,9 +47,9 @@ int shell_inter(void)
 			free(tokens);
 			tokens = NULL;
 			exit(EXIT_SUCCESS);
-		}
+		}*/
 
-		exec_command(tokens);
+		exec(tokens);
 		for (i = 0; tokens[i]; i++)
 			free(tokens[i]);
 		free(tokens);
