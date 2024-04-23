@@ -10,7 +10,7 @@
 #include <sys/wait.h>
 
 int shell_inter(void);
-int exec(char **tokens);
+void exec(char **tokens);
 char **process(char *line);
 void *prt_env(char *env);
 char *location(char *command);
