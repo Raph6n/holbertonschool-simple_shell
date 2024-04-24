@@ -16,5 +16,5 @@ void exec(char **tokens);
 char **process(char *line);
 void *prt_env(char *env);
 char *location(char *command);
-
+void exit_shell(void);
 #endif
