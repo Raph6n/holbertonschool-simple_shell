@@ -17,4 +17,5 @@ char **process(char *line);
 void *prt_env(char *env);
 char *location(char *command);
 void exit_shell(void);
+void print_env(void);
 #endif
