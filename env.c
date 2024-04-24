@@ -3,11 +3,10 @@
 void print_env(void)
 {
 int count = 0;
-extern char **env;
-
-while (env[count] != NULL)
+ extern char **environ;
+while (environ[count] != NULL)
 {
-printf("%s\n", env[count]);
+printf("%s\n", environ[count]);
 count++;
 }
 }
