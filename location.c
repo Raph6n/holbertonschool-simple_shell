@@ -2,7 +2,7 @@
 
 char *location(char *command)
 {
-	char *path = getenv("PATH"), *token, *full_path, *cmd_path;
+	char *path = getenv("PATH"), *token, *full_path;
 
 	if (path == NULL)
 		return (NULL);
@@ -22,11 +22,7 @@ char *location(char *command)
 
 		sprintf(full_path, "%s/%s", token, command);
 		if (access(full_path, X_OK) == 0)
-		{
-			cmd_path = strdup(full_path);
-			free(full_path);
-			return (cmd_path);
-		}
+			return (full_path);
 
 		free(full_path);
 		token = strtok(NULL, ":");
