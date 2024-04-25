@@ -2,14 +2,9 @@
 
 /**
  * exit_shell - built-in for exit
- * @first_tok: correspond of tokens[0] from the token return
- * from the function process.
- * Return: 1 if success or 0 if fail.
  */
 
-int exit_shell(char *first_tok)
+void exit_shell(void)
 {
-	if (strcmp(first_tok, "exit") == 0)
-		return (1);
-	return (0);
+	exit(0);
 }

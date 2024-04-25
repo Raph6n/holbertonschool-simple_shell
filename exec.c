@@ -35,9 +35,7 @@ void exec(char **tokens)
 			fprintf(stderr, "PATH environment variable not found\n");
 			exit(1);
 		}
-
 		token = strtok(path, ":");
-
 		while (token != NULL && tokens[0] != NULL)
 		{
 			strcpy(cmd_path, token);
@@ -51,7 +49,6 @@ void exec(char **tokens)
 			}
 			token = strtok(NULL, ":");
 		}
-
 		fprintf(stderr, "Command not found: %s\n", tokens[0]);
 		exit(1);
 	}

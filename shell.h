@@ -17,6 +17,6 @@ int shell_inter(void);
 void exec(char **tokens);
 char **process(char *line);
 void *prt_env(char *env);
-int exit_shell(char *first_tok);
+void exit_shell(void);
 
 #endif
