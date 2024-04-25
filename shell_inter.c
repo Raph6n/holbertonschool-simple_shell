@@ -36,8 +36,17 @@ int shell_inter(void)
 		if (read > 0 && line[read - 1] == '\n')
 			line[read - 1] = '\0';
 
-		tokens = process(line);
-		exec(tokens);
+		if (line[0] == '.' && line[1] == '/')
+		{
+			tokens = process(line + 2);
+			exec(tokens);
+		}
+		else
+		{
+			tokens = process(line);
+			exec(tokens);
+		}
+
 		for (i = 0; tokens[i]; i++)
 			free(tokens[i]);
 		free(tokens);

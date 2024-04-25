@@ -11,6 +11,7 @@
 #include <errno.h>
 #include <limits.h>
 
+void shell_noninter(char *path, char **envp);
 int shell_inter(void);
 void exec(char **tokens);
 char **process(char *line);
