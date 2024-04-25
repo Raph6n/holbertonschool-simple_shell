@@ -39,6 +39,8 @@ int shell_inter(void)
 		tokens = process(line);
 		if (strcmp(tokens[0], "exit") == 0)
 			exit_shell();
+		else if (strcmp(tokens[0], "env") == 0)
+			print_env();
 		else
 			exec(tokens);
 		for (i = 0; tokens[i]; i++)
