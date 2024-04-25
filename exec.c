@@ -21,6 +21,7 @@ void exec(char **tokens)
 	{
 		for (i = 0; environ[i] != NULL; i++)
 		{
+			execve(tokens[0], tokens, NULL);
 			if (strncmp(environ[i], "PATH=", 5) == 0)
 			{
 				path = environ[i] + 5;

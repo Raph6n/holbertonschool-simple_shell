@@ -18,11 +18,7 @@ int shell_inter(void)
 
 	while (1)
 	{
-		if (isatty(STDIN_FILENO) == 1)
-		{
-			write(STDIN_FILENO, "$ ", 2);
-			fflush(stdout);
-		}
+		write(STDIN_FILENO, "$ ", 2);
 
 		read = getline(&line, &len, stdin);
 		if (read == -1)
