@@ -8,38 +8,29 @@
 
 char **process(char *line)
 {
-	const char *delim = " \n";
 	char *token, **av;
-	int num_tk = 0, i;
-	char *line_cp = strdup(line);
+	int num_tk = 64, i = 0;
 
-	if (line_cp == NULL)
+	if (line == NULL)
 		exit(98);
 
-	token = strtok(line_cp, delim);
-	while (token != NULL)
-	{
-		num_tk++;
-		token = strtok(NULL, delim);
-	}
-
-	av = malloc(sizeof(char *) * (num_tk + 1));
+	av = malloc(sizeof(char *) * (num_tk + 2));
 	if (av == NULL)
 	{
 		perror("memory allocation error");
-		free(line_cp);
+		free(line);
 		exit(98);
 	}
 
-	token = strtok(line, delim);
-	for (i = 0; token != NULL; i++)
+	token = strtok(line, " \n\t");
+	while (token != NULL)
 	{
-		av[i] = malloc(sizeof(char) * (strlen(token) + 1));
-		strcpy(av[i], token);
-		token = strtok(NULL, delim);
+		av[i] = token;
+		i++;
+		token = strtok(NULL, " \n\t");
 	}
 	av[i] = NULL;
-	free(line_cp);
+	free(line);
 
 	return (av);
 }

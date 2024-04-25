@@ -10,7 +10,10 @@ int main(int argc, char **argv)
 	(void)argc;
 	(void)argv;
 
-	shell_inter();
+	if (isatty(STDIN_FILENO) == 1)
+		shell_inter();
+	else
+		shell_non_inter();
 
 	return (0);
 }

@@ -11,9 +11,12 @@
 #include <errno.h>
 #include <limits.h>
 
-void shell_noninter(char *path, char **envp);
+extern char **environ;
+
+int shell_noninter(void);
 int shell_inter(void);
 void exec(char **tokens);
+void exec_non_inter(char **tokens);
 char **process(char *line);
 void *prt_env(char *env);
 char *location(char *command);

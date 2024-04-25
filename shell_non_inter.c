@@ -2,8 +2,7 @@
 #include "shell.h"
 
 /**
- * shell_inter - prints "$ ", wait for the user to enter a command,
- * prints it on the next line.
+ * shell_non_inter - shell non interactif.
  *
  * Return: Always 0.
  */
@@ -18,8 +17,6 @@ int shell_inter(void)
 
 	while (1)
 	{
-		write(STDIN_FILENO, "$ ", 2);
-
 		read = getline(&line, &len, stdin);
 		if (read == -1)
 		{
@@ -33,8 +30,7 @@ int shell_inter(void)
 			line[read - 1] = '\0';
 
 		tokens = process(line);
-		exec(tokens);
-
+		exec_non_inter(tokens);
 		for (i = 0; tokens[i]; i++)
 			free(tokens[i]);
 		free(tokens);
