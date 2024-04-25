@@ -9,7 +9,7 @@
 
 int exit_shell(char *first_tok)
 {
-	if (strcmp(command, "exit") == 0)
+	if (strcmp(first_tok, "exit") == 0)
 		return (1);
 	return (0);
 }
