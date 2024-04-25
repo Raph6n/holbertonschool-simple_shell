@@ -7,7 +7,7 @@
  * Return: Always 0.
  */
 
-int shell_inter(void)
+int shell_non_inter(void)
 {
 	char *line = NULL;
 	char **tokens;

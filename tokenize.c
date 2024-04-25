@@ -25,6 +25,7 @@ char **process(char *line)
 	token = strtok(line, " \n\t");
 	while (token != NULL)
 	{
+		av[i] = malloc(sizeof(char *) * (strlen(token) + 1));
 		av[i] = token;
 		i++;
 		token = strtok(NULL, " \n\t");

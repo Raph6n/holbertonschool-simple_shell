@@ -13,7 +13,7 @@
 
 extern char **environ;
 
-int shell_noninter(void);
+int shell_non_inter(void);
 int shell_inter(void);
 void exec(char **tokens);
 void exec_non_inter(char **tokens);
