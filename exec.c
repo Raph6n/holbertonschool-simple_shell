@@ -16,12 +16,6 @@ void exec(char **tokens)
 	}
 	else if (pid == 0)
 	{
-		path = location(tokens[0]);
-		if (path == NULL)
-		{
-			fprintf(stderr, "Command not found: %s\n", tokens[0]);
-			exit(EXIT_FAILURE);
-		}
 		if (execve(tokens[0], tokens, NULL) == -1)
 		{
 			perror("Execution failed");
