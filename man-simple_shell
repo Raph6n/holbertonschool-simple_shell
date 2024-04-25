@@ -1,0 +1,16 @@
+.TH man "04/25/2024" "1.0"
+
+.SH NAME
+
+simple_shell
+
+.SH SYNOPSIS
+
+#include "shell.h"
+
+
+
+.SH DESCRIPTION
+
+execute line with no arguments
+
