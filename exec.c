@@ -26,7 +26,7 @@ void exec(char **tokens)
 			if (strncmp(environ[i], "PATH=", 5) == 0)
 			{
 				path = environ[i] + 5;
-				exit(1);
+				break;
 			}
 		}
 
