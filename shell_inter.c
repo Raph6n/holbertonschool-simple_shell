@@ -14,7 +14,7 @@ int shell_inter(void)
 	char **tokens;
 	ssize_t read;
 	size_t len = 0;
-	int i = 0;
+	int i = 0, status;
 
 	while (1)
 	{
@@ -37,6 +37,14 @@ int shell_inter(void)
 			line[read - 1] = '\0';
 
 		tokens = process(line);
+		status = exit_shell(tokens[0]);
+		if (status > 0)
+		{
+			for (i = 0; tokens[i]; i++)
+				free(tokens[i]);
+			free(tokens);
+			exit(EXIT_SUCCESS);
+		}
 		exec(tokens);
 		for (i = 0; tokens[i]; i++)
 			free(tokens[i]);

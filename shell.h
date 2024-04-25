@@ -11,11 +11,12 @@
 #include <errno.h>
 #include <limits.h>
 
+extern char **environ;
+
 int shell_inter(void);
 void exec(char **tokens);
 char **process(char *line);
 void *prt_env(char *env);
-char *location(char *command);
-void exit_shell(void);
+int exit_shell(char *first_tok);
 
 #endif
