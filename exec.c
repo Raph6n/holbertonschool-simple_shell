@@ -5,14 +5,13 @@
  * @tokens: Array of tokens representing the command.
  */
 
-extern char **environ;
-
 void exec(char **tokens)
 {
 	pid_t pid = fork();
 	char *path = NULL, *token;
 	char cmd_path[1024];
 	int i;
+	extern char **environ;
 
 	if (pid < 0)
 	{
@@ -37,6 +36,7 @@ void exec(char **tokens)
 		}
 
 		token = strtok(path, ":");
+
 		while (token != NULL)
 		{
 			strcpy(cmd_path, token);
