@@ -8,9 +8,50 @@ simple_shell
 
 #include "shell.h"
 
-
+Recreate simple_shell step by step.
 
 .SH DESCRIPTION
 
-execute line with no arguments
+read and execute the command of the user from the standard input and execute them;
+
+Display the prompt with "$" and wait the user for enter a command.
+
+.SH COMMANDS
+
+.B exit
+
+Exit the shell
+
+.B ^D
+
+User can quit the shell with CTRL+D
+
+.B env
+
+Display the environment variables
+
+.SH EXAMPLES
+
+.TP ls
+
+display files in the actual directory
+
+.TP cd
+
+Display the current directory
+
+.SH AUTHORS
+
+Code by:
+
+Axel Nay 
+
+Raphael Naim 
+
+.SH REPORTING BUGS
+
+Please feel free to send us a mail if you report any bugs:
+
+"axelnay@sfr.fr" or "8773@holbertonstudents.com.
+
 
