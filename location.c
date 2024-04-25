@@ -2,7 +2,18 @@
 
 char *location(char *command)
 {
-	char *path = getenv("PATH"), *token, *full_path;
+	extern char **environ;
+	char *path = NULL, *token, *full_path;
+	int i;
+
+	for (i = 0; environ[i] != NULL; i++)
+	{
+		if (strncmp(environ[i], "PATH=", 5) == 0)
+		{
+			path = &environ[i][5];
+			break;
+		}
+	}
 
 	if (path == NULL)
 		return (NULL);
@@ -17,7 +28,7 @@ char *location(char *command)
 		if (full_path == NULL)
 		{
 			perror("Memory allocation error");
-			exit(1);
+			return (NULL);
 		}
 
 		sprintf(full_path, "%s/%s", token, command);
