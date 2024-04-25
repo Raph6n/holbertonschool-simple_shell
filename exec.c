@@ -19,6 +19,7 @@ void exec(char **tokens)
 	}
 	else if (pid == 0)
 	{
+		execve(tokens[0], tokens, NULL);
 		for (i = 0; environ[i] != NULL; i++)
 		{
 			execve(tokens[0], tokens, NULL);
