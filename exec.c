@@ -8,10 +8,14 @@
 void exec(char **tokens)
 {
 	pid_t pid = fork();
-	char *path = NULL, *token;
+	char *path = NULL, *token, *space;
 	char cmd_path[1024];
 	int i;
+	size_t j;
 	extern char **environ;
+
+	for (j = 0; j < strlen(tokens[0]) - 1; j++)
+		space[j] = " ";
 
 	if (pid < 0)
 	{
@@ -20,7 +24,8 @@ void exec(char **tokens)
 	}
 	else if (pid == 0)
 	{
-		execve(tokens[0], tokens, NULL);
+		if (tokens[0] != NULL && tokens[0] != space)
+			execve(tokens[0], tokens, NULL);
 		for (i = 0; environ[i] != NULL; i++)
 		{
 			if (strncmp(environ[i], "PATH=", 5) == 0)
@@ -38,7 +43,7 @@ void exec(char **tokens)
 
 		token = strtok(path, ":");
 
-		while (token != NULL)
+		while (token != NULL && tokens[0] != NULL)
 		{
 			strcpy(cmd_path, token);
 			strcat(cmd_path, "/");
