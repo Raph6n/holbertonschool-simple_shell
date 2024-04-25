@@ -68,3 +68,11 @@ write (man 2 write)
 # Command of compilation
 
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
+
+# Flowchart
+
+
+![flowcharts simple_shell](https://github.com/Raph6n/holbertonschool-simple_shell/assets/158469700/1fa2e71d-f1f8-4470-ad7d-d61f2cff426d)
+
+
+
