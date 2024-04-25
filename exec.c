@@ -8,7 +8,7 @@
 void exec(char **tokens)
 {
 	pid_t pid = fork();
-	char *path;
+
 	if (pid < 0)
 	{
 		perror("Fork failed");
