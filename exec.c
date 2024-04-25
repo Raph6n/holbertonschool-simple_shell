@@ -11,7 +11,7 @@ void exec(char **tokens)
 	char *path = NULL, *token;
 	char cmd_path[1024];
 	int i;
-	extern char **environ;
+	char **environ;
 
 	if (pid < 0)
 	{
