@@ -26,8 +26,8 @@ listing files in the current directory
 
 # List of allowed functions and system user
 
-
-all functions from string.h
+~~~
+All functions from string.h
 access (man 2 access)
 chdir (man 2 chdir)
 close (man 2 close)
@@ -64,7 +64,7 @@ waitpid (man 2 waitpid)
 wait3 (man 2 wait3)
 wait4 (man 2 wait4)
 write (man 2 write)
-
+~~~
 # Command of compilation
 
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
