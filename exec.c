@@ -10,7 +10,6 @@ void exec(char **tokens)
 	pid_t pid = fork();/*call of the function fork*/
 	char *path = NULL, *token;
 	char cmd_path[1024];
-	int i;
 
 	if (pid < 0)/*fork failed*/
 	{
@@ -21,19 +20,9 @@ void exec(char **tokens)
 	{
 		if (tokens[0] != NULL)/*if we use echo instead of the prompt*/
 			execve(tokens[0], tokens, NULL);
-		for (i = 0; environ[i] != NULL; i++)/*search the path*/
-		{
-			if (strncmp(environ[i], "PATH=", 5) == 0)
-			{
-				path = environ[i] + 5;
-				break;
-			}
-		}
-		if (path == NULL)/*path not found*/
-		{
-			fprintf(stderr, "PATH variable not found\n");
-			exit(1);
-		}
+
+		path = location();/*call of the function location*/
+
 		token = strtok(path, ":");/*cut the path each :*/
 		while (token != NULL && tokens[0] != NULL)
 		{

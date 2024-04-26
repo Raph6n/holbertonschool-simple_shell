@@ -15,6 +15,7 @@ extern char **environ;
 
 int shell_inter(void);
 void exec(char **tokens);
+char *location(void);
 char **process(char *line);
 void print_env(void);
 void exit_shell(void);
