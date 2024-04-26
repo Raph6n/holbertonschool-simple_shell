@@ -37,9 +37,7 @@ void exec(char **tokens)
 		token = strtok(path, ":");/*cut the path each :*/
 		while (token != NULL && tokens[0] != NULL)
 		{
-			strcpy(cmd_path, token);
-			strcat(cmd_path, "/");
-			strcat(cmd_path, tokens[0]);
+			sprintf(cmd_path, "%s/%s", token, tokens[0]);
 			if (access(cmd_path, X_OK) == 0)
 			{/*no path executable*/
 				execve(cmd_path, tokens, NULL);
