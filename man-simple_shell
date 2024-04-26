@@ -1,57 +1,43 @@
-.TH man "04/25/2024" "1.0"
+.TH MAN(simple_shell) "1.0"
 
 .SH NAME
 
-simple_shell
+	Simple_shell
 
 .SH SYNOPSIS
 
-#include "shell.h"
-
-Recreate simple_shell step by step.
+	#include "shell.h"
+	Recreate simple_shell step by step.
 
 .SH DESCRIPTION
 
-read and execute the command of the user from the standard input and execute them;
-
-Display the prompt with "$" and wait the user for enter a command.
+	Read and execute the command of the user from the standard input and execute them;
+	Display the prompt with "$" and wait the user for enter a command.
 
 .SH COMMANDS
 
-.B exit
+	.B exit
+		Exit the shell
 
-Exit the shell
+	.B ^D
+		User can quit the shell with CTRL+D
 
-.B ^D
-
-User can quit the shell with CTRL+D
-
-.B env
-
-Display the environment variables
+	.B env
+		Display the environment variables
 
 .SH EXAMPLES
 
-.TP ls
+	.TP ls
+		Display files in the actual directory
 
-display files in the actual directory
-
-.TP cd
-
-Display the current directory
-
-.SH AUTHORS
-
-Code by:
-
-Axel Nay 
-
-Raphael Naim 
+	.TP cd
+		Display the current directory
 
 .SH REPORTING BUGS
 
-Please feel free to send us a mail if you report any bugs:
+	Please feel free to send us a mail if you report any bugs:
+		"axelnay@sfr.fr" or "8773@holbertonstudents.com.
 
-"axelnay@sfr.fr" or "8773@holbertonstudents.com.
+.SH AUTHOR
 
-
+                Written by Raphael NAIM
