@@ -11,7 +11,7 @@
 
 .SH DESCRIPTION
 
-	Read and execute the command of the user from the standard input and execute them;
+	Read and execute the command of the user from the standard input.
 	Display the prompt with "$" and wait the user for enter a command.
 
 .SH COMMANDS
@@ -24,6 +24,32 @@
 
 	.B env
 		Display the environment variables
+
+.SH RETURN VALUE
+
+	int main(int argc, char **argv)
+		Always return 0.
+
+	int shell_inter(void)
+		Return 0 on success or exit 0 if the function getline() fail.
+
+	char **process(char *line)
+		Return an array with token on success
+		or exit 98 if fail.
+
+	char *location(void)
+		Return the path on success
+		of exit 0 if fail.
+
+	void exec(char **tokens)
+		Return nothing on success
+		or exit 1 if fail.
+
+	void print_env(void)
+		Always return nothing.
+
+	void exit_shell(void)
+		Always exit 1.
 
 .SH EXAMPLES
 
