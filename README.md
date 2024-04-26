@@ -79,7 +79,7 @@ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 
 
 
-![flowcharts simple_shell](https://github.com/Raph6n/holbertonschool-simple_shell/blob/main/flowcharts.pdf)
+![flowcharts simple_shell](https://github.com/Raph6n/holbertonschool-simple_shell/blob/main/flowcharts.jpeg)
 
 
 
