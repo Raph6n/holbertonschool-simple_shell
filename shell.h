@@ -17,6 +17,6 @@ int shell_inter(void);
 void exec(char **tokens);
 char **process(char *line);
 void print_env(void);
-int exit_shell(void);
+void exit_shell(void);
 
 #endif
