@@ -16,6 +16,12 @@ shell_inter.c: display prompt
 
 tokenize.c: tokenize string
 
+exit.c: built-in for exit
+
+env.c: built-in for print the environnement
+
+exec.c: execute the command
+
 location.c: move in the environment
 
 # Examples
@@ -73,7 +79,7 @@ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 
 
 
-![flowcharts simple_shell](https://github.com/Raph6n/holbertonschool-simple_shell/assets/158469700/8a9c5ec0-2e1f-4125-a058-fcfe52844fb4)
+![flowcharts simple_shell](https://github.com/Raph6n/holbertonschool-simple_shell/blob/main/flowcharts.jpeg)
 
 
 
