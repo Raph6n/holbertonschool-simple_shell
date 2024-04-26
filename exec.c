@@ -20,8 +20,6 @@ void exec(char **tokens)
 		if (tokens[0] != NULL)/*if we use echo instead of the prompt*/
 			execve(tokens[0], tokens, NULL);
 
-		path = location();/*call of the function location*/
-
 		token = strtok(path, ":");/*cut the path each :*/
 		while (token != NULL && tokens[0] != NULL)
 		{
