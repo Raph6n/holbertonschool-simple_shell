@@ -1,10 +1,12 @@
 #include "shell.h"
 
 /**
- * exit_shell - built-in for exit
+ * exit_shell - built-in for exit.
+ * Return: always 0.
  */
 
-void exit_shell(void)
+int exit_shell(void)
 {
 	exit(0);
+	return (0);
 }
