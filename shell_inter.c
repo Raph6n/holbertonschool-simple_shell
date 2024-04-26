@@ -10,8 +10,7 @@
 
 int shell_inter(void)
 {
-	char *prt = "$ ", *line = NULL;
-	char **tokens;
+	char *prt = "$ ", *line = NULL, **tokens;
 	ssize_t read;
 	size_t len = 0;
 	int i = 0;
@@ -23,7 +22,6 @@ int shell_inter(void)
 			printf("%s", prt);
 			fflush(stdout);
 		}
-
 		read = getline(&line, &len, stdin);/*get the line enter by the user*/
 		if (read == -1)
 		{
@@ -32,6 +30,8 @@ int shell_inter(void)
 		}
 
 		if (strcmp(line, "\n") == 0)/*continue when the user use only enter*/
+			continue;
+		if (line[0] == ' ')/*continue when the user enter space first*/
 			continue;
 		if (read > 0 && line[read - 1] == '\n')
 			line[read - 1] = '\0';
