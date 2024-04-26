@@ -19,22 +19,24 @@ void exec(char **tokens)
 	{
 		if (tokens[0] != NULL)/*if we use echo instead of the prompt*/
 			execve(tokens[0], tokens, NULL);
-
-		path = location();
-		token = strtok(path, ":");/*cut the path each :*/
-		while (token != NULL && tokens[0] != NULL)
+		else
 		{
-			sprintf(cmd_path, "%s/%s", token, tokens[0]);
-			if (access(cmd_path, X_OK) == 0)
-			{/*no path executable*/
-				execve(cmd_path, tokens, NULL);
-				perror("Execution failed");
-				exit(1);
+			path = location();
+			token = strtok(path, ":");/*cut the path each :*/
+			while (token != NULL && tokens[0] != NULL)
+			{
+				sprintf(cmd_path, "%s/%s", token, tokens[0]);
+				if (access(cmd_path, X_OK) == 0)
+				{/*no path executable*/
+					execve(cmd_path, tokens, NULL);
+					perror("Execution failed");
+					exit(1);
+				}
+				token = strtok(NULL, ":");
 			}
-			token = strtok(NULL, ":");
+			fprintf(stderr, "Command not found: %s\n", tokens[0]);
+			exit(1);
 		}
-		fprintf(stderr, "Command not found: %s\n", tokens[0]);
-		exit(1);
 	}
 	else/*code execute in the parent process*/
 		waitpid(pid, NULL, 0);/*wait for the child process*/
