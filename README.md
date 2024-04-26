@@ -83,3 +83,10 @@ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 
 
 
+
+
+# Authors
+
+Axel Nay
+
+Raphael naim
