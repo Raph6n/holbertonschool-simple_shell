@@ -10,12 +10,7 @@
 
 int shell_inter(void)
 {
-<<<<<<< HEAD
-	char *line = NULL;
-	char **tokens;
-=======
 	char *prt = "$ ", *line = NULL, **tokens;
->>>>>>> main
 	ssize_t read;
 	size_t len = 0;
 	int i = 0;
@@ -41,12 +36,6 @@ int shell_inter(void)
 		if (read > 0 && line[read - 1] == '\n')
 			line[read - 1] = '\0';
 
-<<<<<<< HEAD
-		tokens = process(line);
-		exec(tokens);
-
-		for (i = 0; tokens[i]; i++)
-=======
 		tokens = process(line);/*call the function process*/
 		if (strcmp(tokens[0], "exit") == 0)/*the user enter exit*/
 			exit_shell();
@@ -55,7 +44,6 @@ int shell_inter(void)
 		else
 			exec(tokens);/*call the function exec*/
 		for (i = 0; tokens[i]; i++)/*free the token*/
->>>>>>> main
 			free(tokens[i]);
 		free(tokens);
 		tokens = NULL;
