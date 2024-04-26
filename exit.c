@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * exit_shell - fction to exit
+ * exit_shell - built-in for exit.
  */
 
 void exit_shell(void)

@@ -13,13 +13,18 @@
 
 extern char **environ;
 
+<<<<<<< HEAD
 int shell_non_inter(void);
 int shell_inter(void);
 void exec(char **tokens);
 void exec_non_inter(char **tokens);
+=======
+int shell_inter(void);
+void exec(char **tokens);
+char *location(void);
+>>>>>>> main
 char **process(char *line);
-void *prt_env(char *env);
-char *location(char *command);
+void print_env(void);
 void exit_shell(void);
 
 #endif
