@@ -18,32 +18,32 @@ int shell_inter(void)
 
 	while (1)
 	{
-		if (isatty(STDIN_FILENO))
+		if (isatty(STDIN_FILENO))/*Display the prompt*/
 		{
 			printf("%s", prt);
 			fflush(stdout);
 		}
 
-		read = getline(&line, &len, stdin);
+		read = getline(&line, &len, stdin);/*get the line enter by the user*/
 		if (read == -1)
 		{
 			free(line);
 			exit(0);
 		}
 
-		if (strcmp(line, "\n") == 0)
+		if (strcmp(line, "\n") == 0)/*continue when the user use only enter*/
 			continue;
 		if (read > 0 && line[read - 1] == '\n')
 			line[read - 1] = '\0';
 
-		tokens = process(line);
-		if (strcmp(tokens[0], "exit") == 0)
+		tokens = process(line);/*call the function process*/
+		if (strcmp(tokens[0], "exit") == 0)/*the user enter exit*/
 			exit_shell();
-		else if (strcmp(tokens[0], "env") == 0)
+		else if (strcmp(tokens[0], "env") == 0)/*the user enter env*/
 			print_env();
 		else
-			exec(tokens);
-		for (i = 0; tokens[i]; i++)
+			exec(tokens);/*call the function exec*/
+		for (i = 0; tokens[i]; i++)/*free the token*/
 			free(tokens[i]);
 		free(tokens);
 		tokens = NULL;
