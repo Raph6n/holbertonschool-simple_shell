@@ -7,8 +7,8 @@
 
 void exec(char **tokens)
 {
-	char *path = location(), *token, cmd_path[1024];
 	pid_t pid = fork();/*call the function fork*/
+	char *path = location(), *token, cmd_path[1024];
 
 	if (pid < 0)/*fork failed*/
 	{
