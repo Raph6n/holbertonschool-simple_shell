@@ -17,9 +17,6 @@ void exec(char **tokens)
 	}
 	else if (pid == 0)/*code execute in the child process*/
 	{
-		if (tokens[0] != NULL)/*if we use echo instead of the prompt*/
-			execve(tokens[0], tokens, NULL);
-
 		path = location();
 		token = strtok(path, ":");/*cut the path each :*/
 		while (token != NULL && tokens[0] != NULL)
@@ -33,6 +30,9 @@ void exec(char **tokens)
 			}
 			token = strtok(NULL, ":");
 		}
+		if (tokens[0] != NULL)/*if we use echo instead of the prompt*/
+			execve(tokens[0], tokens, NULL);
+
 		fprintf(stderr, "Command not found: %s\n", tokens[0]);
 		exit(1);
 	}
